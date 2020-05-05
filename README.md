@@ -45,5 +45,9 @@ PyTorch를 이용한 지능제어 텀프로젝트
 	->torch.nn.MaxPool2d(kernel_size=2, stride=2))
 	Layer4:ReLU() -> Dropout(n=0.2)
 * 옵티마이저: Adam
-
 * 손실함수: Softmax
+* 학습결과<br>
+![Image04](https://qgx5sg.ch.files.1drv.com/y4m2imR_EMVpg9AMlXmhJtXrtQfzdeU__snkVImMYjCQlHX7fG13HA0Fme3b2F6D3iyB1BKIGO2bjlCr4Jr3uW-Y7-BoAW6jFe5Q7ThuWrznVCks5T2YTNjnGP5l5ewiRc8ACAVKPs4TT5A-H5zXv2UtmyWHVXkfI_ZX_MUYrWB0kuiXtCtMw0bls48RQ85ac5BnkCQJbCFl3-4SQvZac8qzA?width=506&height=304&cropmode=none)<br>
+* 최종 cost = 0.177
+* 정확도 = 0.913
+
