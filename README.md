@@ -21,3 +21,29 @@ PyTorch를 이용한 지능제어 텀프로젝트
 * 옵티마이저: Adagrad
 * 손실함수: Softmax
 * 모델: 1층 신경망 -> LeakyRelu -> 2층 신경망 -> ReLU -> 3층 신경망 ->  ReLU -> 4층 신경망 -> LeakyRelu -> 5층 신경망
+* 학습결과<br>
+![Image03](https://p2x5sg.ch.files.1drv.com/y4ms61c0dMOGD9FfrCDNDrARcdYpECQBG8lVx3yLZPNzBS-z7aCvHJDenVOy5gjRG0mrRf7Fy0ISsZBUIp4qvPhG6XLqJOTeOlwBX5T-f_sptk8KJVi1ROQwrSPgTfRghOTHpQOJsnTbTqEB8rDQsB2CDKY92mFlMUBzcANHiTGNBgGsuJstmXFVpAN9mPCYhjwig0izD53qjrp8Cw8jHI1pQ?width=475&height=280&cropmode=none)<br>
+* 최종 cost = 0.07
+* 정확도 = 0.945
+* Epoch = 50으로 고정되어 있어 더 많은 학습을 하기 위해 batch size를 60으로 줄였더니 정확도가 많이 늘어났다.
+
+### CNN 기본 설계
+* P0W0 부터 P14W0 까지의 데이터셋을 전부 합치면 15039X56 크기의 데이터가 만들어짐
+* 이 중 50%를 학습데이터로 나머지 50%를 테스트 데이터로 활용함 -> 각 7519x56의 크기
+* 이를 batch size =500의 크기로 (500,1,8,7)의 Tensor(500개의 1채널의 8x7크기의 데이터)로 변환하였다.
+* 기본으로 2개의 conv layer(layer1: 3x3의 32개의 필터, stride=1, padding=1 -> ReLu -> 2x2,stride=2로 Maxpool, 
+* layer2: 3x3의 64개의 필터, stride=1, padding=1 -> ReLu -> 2x2,stride=2로 Maxpool)인 신경망을 구성하였다.
+
+### CNN 결론
+* 레이어 개수: 4개
+
+* Layer1: Conv2d(1, 32, kernel_size=3, stride=1, padding=1) -> ReLU() 
+	->MaxPool2d(kernel_size=2, stride=2)
+     Layer2:Conv2d(32, 64, kernel_size=3, stride=1, padding=1) -> ReLU()
+	->torch.nn.MaxPool2d(kernel_size=2, stride=2))
+       Layer3:Conv2d(64, 92, kernel_size=3, stride=1, padding=1) -> ReLU()
+	->torch.nn.MaxPool2d(kernel_size=2, stride=2))
+	Layer4:ReLU() -> Dropout(n=0.2)
+* 옵티마이저: Adam
+
+* 손실함수: Softmax
